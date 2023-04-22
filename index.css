@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+#app .business {
+  background: #eee;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 6px 0px;
+  width: 100%;
+}
+#app .business button {
+  padding: 8px 12px;
+  background: blue;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0.6;
+  border: none;
+}
+#app .business button:hover {
+  opacity: 1;
+}
+#app .tools {
+  background: #eee;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 6px 0px;
+  width: 100%;
+}
+#app .tools button {
+  padding: 8px 12px;
+  background: tomato;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  opacity: 0.6;
+}
+#app .tools button:hover {
+  opacity: 1;
+}
+#app .editorView {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 6px 0px;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>富文本编辑器</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div id="app">
+        <div class="business">
+            <button class="publish">上传</button>
+        </div>
+        <div class="tools">
+            <button>添加一行</button>
+            <button>添加标题</button>
+        </div>
+        <div class="editorView">
+            <h3>示例标题</h3>
+            <p>近日有消息称，在《暗黑破坏神4》的硬核模式下，玩家角色将会有永久死亡惩罚。所以如果不打算失去一切的话，最好不要随便尝试一些自己没有准备好的东西。</p>
+            <p>而根据《暗黑破坏神4》全球社群开发总监Adam Fletcher介绍的情况显示，除了硬核模式下，玩家角色在PVP中被击杀的话也会遭遇永久死亡。</p>
+        </div>
+    </div>
+    <script>
+        let editorView = document.querySelector('.editorView');
+        editorView.contentEditable = 'true';
+        let publish = document.querySelector('.publish');
+        publish.onclick = ()=>{
+            let elements = editorView.children;
+            console.log(elements);
+            let layout = [];
+            for(let i = 0;i < elements.length;i++){
+                let info = {
+                    type:elements[i].nodeName == 'DIV' ? 'P' : elements[i].nodeName,
+                    text:elements[i].innerText
+                }
+                layout.push(info);
+            }
+            let layJSON = JSON.stringify(layout);
+            let jsonHeaders = new Headers({
+                'Content-Type':'application/json'
+            });
+            fetch('http://127.0.0.1:3000/',{
+                method:'POST',
+                body:layJSON,
+                headers:jsonHeaders
+            })
+            return false;
+        }
+    </script>
+</body>
+</html>
