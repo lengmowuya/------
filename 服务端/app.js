@@ -11,9 +11,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.post('/',(req,res)=>{
     let name = +new Date();
-    fs.writeFile('./../文章/'+name+'.json',JSON.stringify(req.body),(err,data)=>{
-        if(err) res.send('error');
-        res.send('ok');
+    fs.writeFile('./文章/'+name+'.json',JSON.stringify(req.body),(err,data)=>{
+        if(err) res.send({type:'error'});
+        res.send({type:'ok'});
     });
 })
 app.listen(3000,()=>{
