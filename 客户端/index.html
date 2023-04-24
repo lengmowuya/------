@@ -9,17 +9,27 @@
 </head>
 <body>
     <div id="app">
-        <div class="business">
-            <button class="publish">上传</button>
+        <div class="list">
+            <ul>
+                <!-- <li></li> -->
+            </ul>
         </div>
-        <div class="tools">
-            <button>添加一行</button>
-            <button>添加标题</button>
-        </div>
-        <div class="editorView">
-            <h3>示例标题</h3>
-            <p>近日有消息称，在《暗黑破坏神4》的硬核模式下，玩家角色将会有永久死亡惩罚。所以如果不打算失去一切的话，最好不要随便尝试一些自己没有准备好的东西。</p>
-            <p>而根据《暗黑破坏神4》全球社群开发总监Adam Fletcher介绍的情况显示，除了硬核模式下，玩家角色在PVP中被击杀的话也会遭遇永久死亡。</p>
+        <div class="detail">
+            <div class="business">
+                <button class="publish">上传</button>
+            </div>
+            <div class="tools">
+                <button>添加一行</button>
+                <button>添加标题</button>
+            </div>
+            <div class="title">
+                <input type="text" placeholder="文章标题">
+            </div>
+            <div class="editorView">
+                <h3>示例标题</h3>
+                <p>近日有消息称，在《暗黑破坏神4》的硬核模式下，玩家角色将会有永久死亡惩罚。所以如果不打算失去一切的话，最好不要随便尝试一些自己没有准备好的东西。</p>
+                <p>而根据《暗黑破坏神4》全球社群开发总监Adam Fletcher介绍的情况显示，除了硬核模式下，玩家角色在PVP中被击杀的话也会遭遇永久死亡。</p>
+            </div>
         </div>
     </div>
     <script>
@@ -27,8 +37,12 @@
         editorView.contentEditable = 'true';
         let publish = document.querySelector('.publish');
         publish.onclick = ()=>{
+            let title = document.querySelector('.title input').value;
+            if(!title.trim()){
+                alert("文章标题不允许为空!");
+                return;
+            }
             let elements = editorView.children;
-            console.log(elements);
             let layout = [];
             for(let i = 0;i < elements.length;i++){
                 let info = {
@@ -37,18 +51,61 @@
                 }
                 layout.push(info);
             }
-            let layJSON = JSON.stringify(layout);
+            let article = {title,layout};
+            let articleJSON = JSON.stringify(article);
             let jsonHeaders = new Headers({
                 'Content-Type':'application/json'
             });
             fetch('http://127.0.0.1:3000/',{
                 method:'POST',
-                body:layJSON,
+                body:articleJSON,
                 headers:jsonHeaders
-            }).then(data=>{
-                console.log(data);
+            })
+            .then(data=>data.json())
+            .then(data=>{
+                if(data.type == 'ok'){
+                    alert("文章上传成功");
+                }else{
+                    alert("文章上传失败");
+                }
             })
             return false;
+        }
+        
+        GetAllArticle();
+        function GetAllArticle(){
+            fetch('http://127.0.0.1:3000/')
+                .then(data=>data.json())
+                .then(data=>{
+                    // console.log(data);
+                    let list = document.querySelector('.list ul');
+                    data.forEach(article=>{
+                        let li = document.createElement('button');
+                        li.innerText=article;
+                        li.onclick = ()=>{
+                            GetArticle(article)
+                                .then(data=>{
+                                    // console.log(data);
+                                    ChangeArticle(data);
+                                })
+                        }
+                        list.appendChild(li);
+                    })
+                })
+        }
+        function GetArticle(name){
+            return    fetch('http://127.0.0.1:3000/article/'+name)
+                .then(data=>data.json())
+        }
+        function ChangeArticle(article){
+            editorView.innerHTML = '';
+            article.forEach(item=>{
+                let element = document.createElement(item.type);
+                // console.log(element);
+                element.innerText = item.text;
+                editorView.appendChild(element);
+
+            })
         }
     </script>
 </body>

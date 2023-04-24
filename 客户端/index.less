@@ -7,56 +7,97 @@ ul{
 }
 #app{
     display:flex;
-    flex-direction: column;
+    // flex-direction: column;
     max-width: 1200px;
     padding:10px;
     align-items: center;
     justify-content: center;
     margin:0 auto;
-    .business{
-        background:#eee;
-        padding:10px;
-        border-radius: 6px;
-        margin:6px 0px;
-        width:100%;
-        button{
-            padding:8px 12px;
-            background:blue;
-            color:#fff;
-            border-radius: 3px;
-            cursor: pointer;
-            transition:all 0.2s;
-            opacity: 0.6;
-            border:none;
-            &:hover{
-                opacity: 1;
+    .list{
+        min-width: 300px;
+        min-height: 600px;
+        margin-right: 10px;
+        ul{
+            background:#eee;
+            padding:10px;
+            display:flex;
+            flex-direction: column;
+            button{
+                display:block;
+                border:none;
+                // width:calc(100% -);
+                text-align: left;
+                // border
+                margin:6px;
+                background:#fff;
+                padding:12px 8px;
+                border-radius: 6px;
+                transition:all 0.2s;
+                cursor: pointer;
+                &:hover{
+                    opacity: 0.8;
+                    text-decoration: underline;
+                }
             }
         }
     }
-    .tools{
-        background:#eee;
-        padding:10px;
-        border-radius: 6px;
-        margin:6px 0px;
-        width:100%;
-        button{
-            padding:8px 12px;
-            background:tomato;
-            color:#fff;
-            border-radius: 3px;
-            cursor: pointer;
-            transition:all 0.2s;
-            border:none;
-            opacity: 0.6;
-            &:hover{
-                opacity: 1;
+    .detail{
+        display:flex;
+        flex-direction: column;
+        .business{
+            background:#eee;
+            padding:10px;
+            border-radius: 6px;
+            margin:6px 0px;
+            width:100%;
+            button{
+                padding:8px 12px;
+                background:blue;
+                color:#fff;
+                border-radius: 3px;
+                cursor: pointer;
+                transition:all 0.2s;
+                opacity: 0.6;
+                border:none;
+                &:hover{
+                    opacity: 1;
+                }
             }
         }
-    }
-    .editorView{
-        border:1px solid #ccc;
-        border-radius: 8px;
-        padding:10px;
-        margin:6px 0px;
+        .tools{
+            background:#eee;
+            padding:10px;
+            border-radius: 6px;
+            margin:6px 0px;
+            width:100%;
+            button{
+                padding:8px 12px;
+                background:tomato;
+                color:#fff;
+                border-radius: 3px;
+                cursor: pointer;
+                transition:all 0.2s;
+                border:none;
+                opacity: 0.6;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+        }
+        .title{
+            display:flex;
+            width:100%;
+            input{
+                width:50%;
+                height:40px;
+                font-size:24px;
+            }
+        }
+        .editorView{
+            border:1px solid #ccc;
+            border-radius: 8px;
+            padding:10px;
+            margin:6px 0px;
+        }
     }
 }

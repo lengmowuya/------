@@ -7,21 +7,50 @@ ul {
 }
 #app {
   display: flex;
-  flex-direction: column;
   max-width: 1200px;
   padding: 10px;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
 }
-#app .business {
+#app .list {
+  min-width: 300px;
+  min-height: 600px;
+  margin-right: 10px;
+}
+#app .list ul {
+  background: #eee;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+#app .list ul button {
+  display: block;
+  border: none;
+  text-align: left;
+  margin: 6px;
+  background: #fff;
+  padding: 12px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+#app .list ul button:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+#app .detail {
+  display: flex;
+  flex-direction: column;
+}
+#app .detail .business {
   background: #eee;
   padding: 10px;
   border-radius: 6px;
   margin: 6px 0px;
   width: 100%;
 }
-#app .business button {
+#app .detail .business button {
   padding: 8px 12px;
   background: blue;
   color: #fff;
@@ -31,17 +60,17 @@ ul {
   opacity: 0.6;
   border: none;
 }
-#app .business button:hover {
+#app .detail .business button:hover {
   opacity: 1;
 }
-#app .tools {
+#app .detail .tools {
   background: #eee;
   padding: 10px;
   border-radius: 6px;
   margin: 6px 0px;
   width: 100%;
 }
-#app .tools button {
+#app .detail .tools button {
   padding: 8px 12px;
   background: tomato;
   color: #fff;
@@ -51,10 +80,19 @@ ul {
   border: none;
   opacity: 0.6;
 }
-#app .tools button:hover {
+#app .detail .tools button:hover {
   opacity: 1;
 }
-#app .editorView {
+#app .detail .title {
+  display: flex;
+  width: 100%;
+}
+#app .detail .title input {
+  width: 50%;
+  height: 40px;
+  font-size: 24px;
+}
+#app .detail .editorView {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
